@@ -1,0 +1,1 @@
+Star.py script works on linux only because of a charmap encoding error
