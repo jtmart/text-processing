@@ -1,6 +1,1 @@
-NB
-
-Just run by double-cliking on script_1.py!
-(if it fails run it from the console)
-
-After running script_1.py, sort the csv with excel to remove empty lines. [if not script_2.py returns an error]
+This repository contains a series of scripts to batch process textual data for analysis in R, Python, TXM and IRaMuTeQ. It mainly consists of tools to extract text and its metadata from digital sources (PDFs, HTML, SRT), clean it (layout and OCR corrections) and format it in a CSV+TXT format for analysis. 
