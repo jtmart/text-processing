@@ -4,7 +4,7 @@ import pprint
 import pandas as pd
 # api_key= AIzaSyAdgHHmUHVlrS-TGB97Lq1Y0LcPAqEE11g
 # arguments to be passed to build function 
-DEVELOPER_KEY = "AIzaSyAdgHHmUHVlrS-TGB97Lq1Y0LcPAqEE11g"
+DEVELOPER_KEY = "YOUR-API-KEY-HERE"
 YOUTUBE_API_SERVICE_NAME = "youtube"
 YOUTUBE_API_VERSION = "v3"
 # creating youtube resource object 
