@@ -12,7 +12,7 @@ data = data[1:]
 
 for id in data:
 	filename = "corpus/"+id+".txt"
-	file = open(filename, encoding='utf-8', errors='replace')
+	file = open(filename, encoding='utf-8', errors='replace')  #or encoding='utf-8' or 'latin-1' or 'iso-8859-1' or 'mac_roman'
 	try :
 		fileContent = file.read()
 		file.close()

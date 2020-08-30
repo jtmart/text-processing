@@ -4,7 +4,7 @@ import pandas as pd
 
 folder_name=['loksabha']
 
-Members = pd.read_csv('loksabha.csv', sep=',', index_col=False, encoding='iso-8859-1') #or encoding='utf-8' or 'latin-1' or 'iso-8859-1'
+Members = pd.read_csv('loksabha.csv', sep=',', index_col=False, encoding='iso-8859-1')  #or encoding='utf-8' or 'latin-1' or 'iso-8859-1' or 'mac_roman'
 count=0
 Verdict=[]
 j=0

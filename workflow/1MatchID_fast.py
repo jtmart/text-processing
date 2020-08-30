@@ -2,7 +2,7 @@ import os
 import re
 import pandas as pd
 
-LS = pd.read_csv('Metadata_LS.csv', sep=',', index_col=False)
+LS = pd.read_csv('Metadata_LS.csv', sep=',', index_col=False)  # add ", encoding='iso-8859-1'" after "False". Try encodings 'utf-8' or 'latin-1' or 'iso-8859-1' or 'mac_roman'
 count = 0
 Verdict = []
 j = 0

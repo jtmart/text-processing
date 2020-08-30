@@ -21,7 +21,7 @@ with open(filename, 'rb') as f:
 
 counter=1
 simp=0
-with open(filename,'r',encoding='utf-8') as f:
+with open(filename,'r',encoding='utf-8') as f: #or encoding='utf-8' or 'latin-1' or 'iso-8859-1' or 'mac_roman'
     reader = csv.reader(f)
     for row in reader: #For skipping the first row i.e. the one which contains the variable names
         if(count==0):

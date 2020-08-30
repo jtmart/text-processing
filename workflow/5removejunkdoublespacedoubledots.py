@@ -26,6 +26,6 @@ for File in Files:
 	line_replaced = re.sub(r'(\.)([A-Z])', r"\1 \2", line_replaced) #fix is here: it re-adds the space btw dots and next letter
 	line_replaced = re.sub(r'(\.)([0-9]+)(\.)', r"\1 \2\3", line_replaced) #fix is here: it re-adds the space btw dots and next letter
 	line_replaced = re.sub(r'(\.)([0-9]+)(\))', r"\1 \2\3", line_replaced) #fix is here: it re-adds the space btw dots and next letter
-	WFile = open(PathMain+"\\"+File,'w',encoding='utf-8')
+	WFile = open(PathMain+"\\"+File,'w',encoding='utf-8')  #or encoding='utf-8' or 'latin-1' or 'iso-8859-1' or 'mac_roman'
 	WFile.write(line_replaced)
 	WFile.close()
