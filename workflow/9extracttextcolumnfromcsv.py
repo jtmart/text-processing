@@ -5,8 +5,8 @@
 import pandas as pd
 from pandas import ExcelWriter
 from pandas import ExcelFile
-path_input = r"file.csv"
-path_save = r"./output/"
+path_input = r"file.csv" #the name of the original csv, often metadata.csv
+path_save = r"./output/" #create an empty folder called output
 
 csv = pd.read_csv(path_input) #csv inside folder
 
