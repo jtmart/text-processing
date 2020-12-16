@@ -1,0 +1,13 @@
+#IF FEW FILES:
+
+cat /data/Rdatasets/current/dips/o-csvs/ir-b13p/* > /data/Rdatasets/current/dips/o-csvs/ir-b13p.txt
+
+#IF MANY FILES (PRINT TO CONSOLE)
+
+for file in /data/Rdatasets/current/dips/o-csvs/ir-b13p/*; do cat "$file"; done
+
+#IF MANY FILES (PRINT TO FILE, SO FAST!!!) #USE THAT
+
+First go to the folder containing the files to merge
+
+  find . -maxdepth 1 -type f -name '*' -print0 | sort -zV | xargs -0 cat > /data/Rdatasets/current/dips/o-csvs/ir-b13p3.txt
