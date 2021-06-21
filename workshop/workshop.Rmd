@@ -1,0 +1,79 @@
+---
+title: "post-crash"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown 
+
+rary(quanteda)
+
+india_corpus \<- corpus(textdata)
+
+\# have a look on the new corpus object
+
+summary(corpus(india_corpus), 5)
+
+```{r cars}
+# read csv into a data.frame
+#Option 1
+textdata <- read.csv("C:\\Users\\jtmartelli\\Desktop\\dataframeXpureSample.csv", header = TRUE, sep = ",", encoding = "UTF-8", stringsAsFactors = FALSE)
+textdata2 <- read.csv("C:\\Users\\jtmartelli\\Desktop\\sotu.csv", header = TRUE, sep = ",", encoding = "UTF-8", stringsAsFactors = FALSE)
+dim(textdata)
+dim(textdata2)
+colnames(textdata2)
+
+library(quanteda)
+#sotu_corpus <- corpus(textdata2)
+sotu_corpus <- corpus(textdata2$text, docnames = textdata$doc_id)
+india_corpus <- corpus(textdata)
+
+india_corpus <- corpus(textdata)
+# have a look on the new corpus object
+summary(corpus(india_corpus), 5)
+
+
+# Create a DTM (may take a while)
+DTMI <- dfm(india_corpus)
+DTMU <- dfm(sotu_corpus)
+# Show some information
+
+# sum columns for word counts
+freqs <- colSums(DTMI)
+# get vocabulary vector
+words <- colnames(DTMI)
+# combine words and their frequencies in a data frame
+wordlist <- data.frame(words, freqs)
+# re-order the wordlist by decreasing frequency
+wordIndexes <- order(wordlist[, "freqs"], decreasing = TRUE)
+wordlist <- wordlist[wordIndexes, ]
+# show the most frequent words
+head(wordlist, 25)
+
+# sum columns for word counts
+# sum columns for word counts
+freqs2 <- colSums(DTMU)
+# get vocabulary vector
+words2 <- colnames(DTMU)
+# combine words and their frequencies in a data frame
+wordlist2 <- data.frame(words2, freqs2)
+# re-order the wordlist by decreasing frequency
+wordIndexes2 <- order(wordlist2[, "freqs2"], decreasing = TRUE)
+wordlist2 <- wordlist2[wordIndexes2, ]
+# show the most frequent words
+head(wordlist2, 25)
+
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
