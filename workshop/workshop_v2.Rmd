@@ -1,0 +1,103 @@
+---
+title: "post-crash"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+rary(quanteda)
+
+india_corpus \<- corpus(textdata)
+
+\# have a look on the new corpus object
+
+summary(corpus(india_corpus), 5)
+
+```{r cars}
+# read csv into a data.frame
+#Option 1
+textdata <- read.csv("C:\\Users\\jtmartelli\\Desktop\\dataframeXpureSample.csv", header = TRUE, sep = ",", encoding = "UTF-8", stringsAsFactors = FALSE)
+textdata2 <- read.csv("C:\\Users\\jtmartelli\\Desktop\\sotu.csv", header = TRUE, sep = ",", encoding = "UTF-8", stringsAsFactors = FALSE)
+dim(textdata)
+dim(textdata2)
+colnames(textdata2)
+
+library(quanteda)
+#sotu_corpus <- corpus(textdata2)
+sotu_corpus <- corpus(textdata2$text, docnames = textdata$doc_id)
+india_corpus <- corpus(textdata)
+
+india_corpus <- corpus(textdata)
+# have a look on the new corpus object
+summary(corpus(india_corpus), 5)
+
+
+# Create a DTM (may take a while)
+DTMI <- dfm(india_corpus)
+DTMU <- dfm(sotu_corpus)
+# Show some information
+
+# sum columns for word counts
+freqs <- colSums(DTMI)
+# get vocabulary vector
+words <- colnames(DTMI)
+# combine words and their frequencies in a data frame
+wordlist <- data.frame(words, freqs)
+# re-order the wordlist by decreasing frequency
+wordIndexes <- order(wordlist[, "freqs"], decreasing = TRUE)
+wordlist <- wordlist[wordIndexes, ]
+# show the most frequent words
+head(wordlist, 25)
+
+# sum columns for word counts
+# sum columns for word counts
+freqs2 <- colSums(DTMU)
+# get vocabulary vector
+words2 <- colnames(DTMU)
+# combine words and their frequencies in a data frame
+wordlist2 <- data.frame(words2, freqs2)
+# re-order the wordlist by decreasing frequency
+wordIndexes2 <- order(wordlist2[, "freqs2"], decreasing = TRUE)
+wordlist2 <- wordlist2[wordIndexes2, ]
+# show the most frequent words
+head(wordlist2, 25)
+
+```
+
+## Frequency analysis 
+
+```{r, A}
+options(stringsAsFactors = FALSE)
+require(quanteda)
+library(dplyr)
+
+data <- read.csv("C:\\Users\\jtmartelli\\Desktop\\lemma.txt", sep = '\t', as.is = TRUE,
+                 header = FALSE)
+dict <- dictionary(split(data[,2], data[,1])) #dictionary of lemmas
+
+india_corpus_toks <- tokens(india_corpus, remove_punct = FALSE, remove_numbers = FALSE, remove_symbols = FALSE, remove_separators = TRUE, split_hyphens = FALSE, remove_url = FALSE)
+
+india_corpus_toks_lemma <- tokens_lookup(india_corpus_toks, dict, valuetype = 'fixed', exclusive = FALSE, capkeys = FALSE, case_insensitive = TRUE) #lemmatization of the corpus
+
+india_corpus_toks_lemma2 <- tokens_select(india_corpus_toks_lemma, pattern = stopwords('en'), selection = 'remove', case_insensitive = TRUE) #removal of stopwords
+
+india_corpus_toks_lemma3 <- india_corpus_toks_lemma2 %>% tokens_remove('[\\p{P}\\p{S}]', valuetype = 'regex', padding = TRUE) #removal of math signs as well as punctuation
+
+DTMI_L <- dfm(india_corpus_toks_lemma3, remove_punct = FALSE, tolower = FALSE, dictionary_regex=TRUE, language = "english", stem = FALSE, clean = FALSE, verbose= TRUE)
+
+###
+
+sotu_corpus_toks <- tokens(sotu_corpus, remove_punct = FALSE, remove_numbers = FALSE, remove_symbols = FALSE, remove_separators = TRUE, split_hyphens = FALSE, remove_url = FALSE)
+
+sotu_corpus_toks_lemma <- tokens_lookup(sotu_corpus_toks, dict, valuetype = 'fixed', exclusive = FALSE, capkeys = FALSE, case_insensitive = TRUE) #lemmatization of the corpus
+
+sotu_corpus_toks_lemma2 <- tokens_select(sotu_corpus_toks_lemma, pattern = stopwords('en'), selection = 'remove', case_insensitive = TRUE) #removal of stopwords
+
+sotu_corpus_toks_lemma3 <- sotu_corpus_toks_lemma2 %>% tokens_remove('[\\p{P}\\p{S}]', valuetype = 'regex', padding = TRUE) #removal of math signs as well as punctuation
+
+DTMU_L <- dfm(sotu_corpus_toks_lemma3, remove_punct = FALSE, tolower = FALSE, dictionary_regex=TRUE, language = "english", stem = FALSE, clean = FALSE, verbose= TRUE)
+```
